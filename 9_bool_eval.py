@@ -74,9 +74,9 @@ test_strings = [
     'q and r',
     '(q and r)',
     '(False)',
-    '(p and True)',
+    '(p an True)',
     '(p and q) or p',
-    '(p and (not q or r)) or p',
+    '(p and (not q or r)) or p'
 ]
 
 p, q, r = True, False, True

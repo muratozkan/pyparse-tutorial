@@ -1,4 +1,4 @@
-from pyparsing import Word, nums, oneOf, Suppress, restOfLine, alphas, alphanums, Group, ZeroOrMore
+from pyparsing import Word, nums, oneOf, Suppress, restOfLine, alphas, alphanums, Group, ZeroOrMore, Optional, Keyword
 
 # Parses Spring log lines (logs are taken from ENBD project)
 
@@ -11,7 +11,7 @@ log_sample = '''
 
 date = Word(nums + '-')
 time = Word(nums + ':.')
-level = oneOf(['INFO', 'WARN', 'DEBUG'])
+level = Keyword('INFO') | Keyword('WARN') | Keyword('DEBUG')   # oneOf(['INFO', 'WARN', 'DEBUG'])
 pid = Word(nums)
 thread = Suppress('[') + Word(alphanums + '-') + Suppress(']')
 source = Word(alphas + '.')

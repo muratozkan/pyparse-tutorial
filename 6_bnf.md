@@ -23,6 +23,7 @@ Sample Boolean Expression in EBNF
     
 Sample expressions 
 
+    not (p and q)
     True
     (False)
     p

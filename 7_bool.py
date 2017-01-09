@@ -9,7 +9,18 @@ from pyparsing import Suppress, Keyword, Word, Forward, Group, ZeroOrMore, restO
 # <term> ::= <factor> { <and><factor> }
 # <factor> ::= <constant> | <not><factor> | (<expression>)
 
-expr = restOfLine
+l_par, r_par = Suppress('('), Suppress(')')
+and_op = Keyword('and')
+or_op = Keyword('or')
+not_op = Keyword('not')
+variable = Word('pqr', exact=1)
+constant = Keyword('True') | Keyword('False')
+
+expr = Forward()
+factor = Forward()
+factor <<= constant | variable | Group(not_op + factor) | Group(l_par + expr + r_par)
+term = factor + ZeroOrMore(and_op + factor)
+expr <<= term + ZeroOrMore(or_op + factor)
 
 test_strings = [
     'True',
